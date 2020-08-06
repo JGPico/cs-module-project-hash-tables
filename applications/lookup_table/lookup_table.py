@@ -1,4 +1,6 @@
 # Your code here
+import math
+import random
 
 
 def slowfun_too_slow(x, y):
@@ -9,13 +11,29 @@ def slowfun_too_slow(x, y):
 
     return v
 
+
+lookup_table = {}
+
+
 def slowfun(x, y):
     """
     Rewrite slowfun_too_slow() in here so that the program produces the same
     output, but completes quickly instead of taking ages to run.
     """
     # Your code here
+    string_input = str(x) + " " + str(y)
 
+    if string_input in lookup_table:
+        return lookup_table[string_input]
+
+    v = math.pow(x, y)
+    v = math.factorial(v)
+    v //= (x + y)
+    v %= 982451653
+
+    lookup_table[string_input] = v
+
+    return v
 
 
 # Do not modify below this line!
