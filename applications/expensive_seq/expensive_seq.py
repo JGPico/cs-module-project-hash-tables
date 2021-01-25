@@ -1,9 +1,21 @@
 # Your code here
 
+cached_answers = {}
+
 
 def expensive_seq(x, y, z):
     # Your code here
+    temp = (x, y, z)
+    if temp in cached_answers:
+        return cached_answers[temp]
 
+    if x <= 0:
+        cached_answers[temp] = y + z
+        return cached_answers[temp]
+    if x > 0:
+        cached_answers[temp] = expensive_seq(
+            x-1, y+1, z) + expensive_seq(x-2, y+2, z*2) + expensive_seq(x-3, y+3, z*3)
+        return cached_answers[temp]
 
 
 if __name__ == "__main__":
